@@ -9,57 +9,72 @@ BarWidget {
         ? shell.serviceFor("tarik.focus-timer")
         : null
 
-    implicitWidth: vertical
-        ? barSize
-        : contentRow.implicitWidth + 16
+    implicitWidth: vertical ? barSize : 120
+    implicitHeight: vertical ? 120 : barSize
 
-    implicitHeight: vertical
-        ? contentRow.implicitHeight
-        : barSize
-
-    function formatTime(seconds) {
-        var minutes = Math.floor(seconds / 60)
-        var secs = seconds % 60
-
-        return minutes.toString().padStart(2, "0")
-            + ":"
-            + secs.toString().padStart(2, "0")
-    }
-
-    Row {
-        id: contentRow
+    Rectangle {
+        id: track
 
         anchors.centerIn: parent
-        spacing: 6
 
-        Text {
-            text: timerService && timerService.isBreak
-                ? "☕"
-                : "◉"
+        width: vertical ? 6 : 105
+        height: vertical ? 105 : 6
 
-            color: Color.foreground
-        }
+        radius: 3
 
-        Text {
-            text: timerService
-                ? root.formatTime(timerService.remainingSeconds)
-                : "--:--"
+        color: "#292929"
 
-            color: Color.foreground
+        Rectangle {
+            id: progressFill
+
+            radius: parent.radius
+            color: "#f2c94c"
+
+            width: vertical
+                ? parent.width
+                : parent.width * (
+                    timerService
+                    ? timerService.progress
+                    : 1
+                )
+
+            height: vertical
+                ? parent.height * (
+                    timerService
+                    ? timerService.progress
+                    : 1
+                )
+                : parent.height
+
+            anchors.left: vertical
+                ? undefined
+                : parent.left
+
+            anchors.bottom: vertical
+                ? parent.bottom
+                : undefined
+
+            Behavior on width {
+                NumberAnimation {
+                    duration: 250
+                }
+            }
+
+            Behavior on height {
+                NumberAnimation {
+                    duration: 250
+                }
+            }
         }
     }
 
     MouseArea {
         anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
 
         onClicked: {
-            if (timerService)
-                timerService.toggle()
-        }
-
-        onDoubleClicked: {
-            if (timerService)
-                timerService.reset()
+            if (shell)
+                shell.toggle("tarik.focus-timer")
         }
     }
 }

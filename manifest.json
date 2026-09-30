@@ -2,21 +2,27 @@
   "schemaVersion": 1,
   "id": "tarik.focus-timer",
   "name": "Focus Timer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Tarik",
   "license": "MIT",
-  "description": "Minimal work/break timer with a progress ring in the bar.",
+  "description": "Minimal work/break timer with a yellow progress bar.",
+
   "kinds": [
     "service",
-    "bar-widget"
+    "bar-widget",
+    "panel"
   ],
+
   "entryPoints": {
     "service": "Service.qml",
-    "barWidget": "BarWidget.qml"
+    "barWidget": "BarWidget.qml",
+    "panel": "Panel.qml"
   },
+
   "barWidget": {
     "displayName": "Focus Timer",
-    "description": "Work/break timer",
+    "description": "Minimal Pomodoro progress bar",
+    "category": "Time",
     "allowMultiple": false,
     "defaultSection": "right"
   }
