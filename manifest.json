@@ -5,20 +5,15 @@
   "version": "0.2.0",
   "author": "Tarik",
   "license": "MIT",
-  "description": "Minimal work/break timer with a yellow progress bar.",
-
+  "description": "Minimal yellow and black Pomodoro timer for the Omarchy bar.",
   "kinds": [
     "service",
-    "bar-widget",
-    "panel"
+    "bar-widget"
   ],
-
   "entryPoints": {
     "service": "Service.qml",
-    "barWidget": "BarWidget.qml",
-    "panel": "Panel.qml"
+    "barWidget": "BarWidget.qml"
   },
-
   "barWidget": {
     "displayName": "Focus Timer",
     "description": "Minimal Pomodoro progress bar",
