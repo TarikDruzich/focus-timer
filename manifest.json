@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "id": "tarik.focus-timer",
   "name": "Focus Timer",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Tarik",
   "license": "MIT",
-  "description": "Minimal yellow and black Pomodoro timer for the Omarchy bar.",
+  "description": "Minimal Pomodoro timer for the Omarchy bar with focus statistics, configurable sessions, and completion sound.",
   "kinds": [
     "service",
     "bar-widget"
